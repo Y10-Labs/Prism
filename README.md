@@ -102,8 +102,8 @@ Of course, as with any project, the timeline was only a mere suggestion for what
 
 3. Handoff to petalinux - [Successfull]
 
-4. Petalinux running - [Failed]: Same issue faced on PYNQ board when using the same SD Card. Might be due to faulty SD Card?
-![Petalinux Test UART log file starting](docs/log_pic.png)
+4. Petalinux running - [Paritally Successfull]
+Petalinux boots, but unable to login as shell ignores keyboard input.
 The full logfile is in docs/screenlog.0
 
 ## Team
