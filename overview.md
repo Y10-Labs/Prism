@@ -1,106 +1,46 @@
-# PRISM: Custom Handheld Gaming Console
-
-![Prism Logo](docs/logo.png)
-
-*A custom-built handheld gaming console with 3D-capable GPU and gyroscopic control*
-
-## Overview
-
-Prism is a handheld gaming console featuring a custom 3D-capable GPU implemented on a Zynq SoC FPGA, complete with fixed-function graphics pipeline and gyroscopic motion control. Designed by Y𝜄𝜋10𝜕 Labs as part of ESDP Lab at IIT Hyderabad.
-
-## Technical Specifications
-
-### Display
-- **Resolution**: During development timeline, we plan on testing with the following resolutions
-  - Mid-Spec: 400 × 240 @ 60fps
-  - Low-Spec: 200 × 120 @ 30fps
-- **Screen Size**: 5-inch LCD Panel @ 60Hz
-- **Pixel Density**: 151 PPI
-- **Color Support**: 15-bit RGB (32,768 colors)
-
-### Controls
-- **Gyroscopic Motion**: 6-axis IMU sensor (LSM6DSL)
-- **Analog Joystick**: Full 360° with variable pressure
-- **D-Pad**: 4-button pad
-
-### Hardware Architecture
-- **SoC**: Xilinx Zynq-7000 Series
-- **Memory**: 256 MB DDR3 SDRAM
-- **Storage**: 2 x SD Card / ROM
-- **Graphics**: Custom GPU pipeline implemented in FPGA and ARM core
-  - Vertex Shader
-  - Shape Assembly
-  - Rasterization
-  - Pixel Shader
-- **Custom Audio Engine**: 
-  - Capable of handling upto 255 Channels, each with primitive DSP effects, to interface with the game.
-  - Supports basic 2D Spatial Audio
-
-## PCB Design
-
-Mentioning [juliancoy](https://github.com/juliancoy/zynqPCB) as his open-source Zynq PCB design helped us a lot as a starting point.
-
-We heavily modified the design, to incorporate out requirements, and the PCB design looks as follows.
-
-![pcbnozone](docs/pcb-nozone.png)
-![pcbzone](docs/pcb-full.png)
-![pcbxray](docs/xray-pcb.jpg)
-![pcb](docs/pcb.png)
-
-## Enclosure
-
-We 3D printed the outer case for the console. The design has space to draw cables out to remaining parts. (It was spray-painted red)
-![case1](docs/case1.png)
-![case2](docs/case2.png)
-
-## Software Architecture
-
-### Programming Interface
-- C++ for game development (Runs on Petalinux OS)
-
-### Libraries
-- **Driver Layer**: Hardware abstraction for:
-  - Display output
-  - Control inputs
-  - Sensors
-- **Graphics Layer**:
-  - 3D model loading (Loads OBJ only for now)
-  - Scene graph management
-  - Camera controls
-
-### Game Development Tools
-  - Optional OpenGL linking to test game on computer. 
-
-## Project Structure
-
-- **Hardware Design**: PCB and schematic files for Zynq FPGA-based board
-- **FPGA Development**: Verilog sources for processor core and GPU
-- **Drivers**: C++ access layers for hardware components
-- **Graphics Library**: GL-compatible rendering system
-- **Emulation**: OpenGL-based desktop emulator
+# PrisM
+Repository for PrisM, a custom FPGA-based handheld gaming console, built from scratch.
 
 
-**Software is still under progress**
+## Working with submodules
+To work on this project, first clone the repo with submodules
 
-## Development Timeline
+```bash
+    git clone --recurse-submodules --remote-submodules https://github.com/Y10-Labs/Prism
+```
 
-The project is supposed to follow the following timeline:
-1. **Phase 1**: Architecture design and specifications freeze
-2. **Phase 2**: Low-spec implementation (200 × 120 @ 60fps)
-3. **Phase 3**: Mid-spec implementation (400 × 240 @ 60fps)
-4. **Phase 4**: PCB design/fabrication and hardware assembly
-5. **Phase 5**: Game development and testing
+If you previously cloned this repo, without recurse submodules
 
-![tiemline](docs/timeline.png)
+```bash
+    git fetch
+    git pull
+    git submodule update --init --recursive
+```
 
-Of course, as with any project, the timeline was only a mere suggestion for what was to happen. We technically hit goals for finishing the PCB, and then waited after that to do everything else.
 
-## Team
+If you are working on a submodule (Ex: Prism-SW), 
 
-Y𝜄𝜋10𝜕 Labs:
-- Adarsh A (EE23BTECH11203)
-- Manohar K (EE23BTECH11208)
-- Prajwal M (EE23BTECH11217)
-- Mihir Divyansh Eachempati (EE23BTECH11017)
-- Soham Prabhakar More (EE23BTECH11223)
-- Sri Krishna Prabhas Yadla (EE23BTECH11224)
+```bash
+    cd Prism-SW
+    git checkout main
+```
+
+And make changes.
+
+When you are done making changes, 
+
+```bash
+    git add .
+    git commit -m "Commit Message"
+    git push
+```
+
+Then 
+```bash
+    cd ../ # Back to the project root
+    git checkout main
+    git submodule update 
+    git add .
+    git commit -m "Changed submodule X"
+    git push
+```
