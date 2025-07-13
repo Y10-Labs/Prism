@@ -105,7 +105,13 @@ Of course, as with any project, the timeline was only a mere suggestion for what
 4. Petalinux running - [Paritally Successfull]
 Petalinux boots, but unable to login as shell ignores keyboard input.
 The full logfile is in docs/screenlog.0
+5. Petalinux Boots, Can Interact, can control BRAM, GPIOs from user-space
+6. Blink LED works!!!
 
+https://github.com/user-attachments/assets/88580f63-fb4b-489d-97fe-cd0411badff9
+
+
+   
 ## Team
 
 Y𝜄𝜋10𝜕 Labs:
